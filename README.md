@@ -1,5 +1,5 @@
 # Projeto para suporte às aulas de integração contínua
-
+test
 ## Problema
 Esse repositório implementa uma API HTTP para validar o texto de uma senha 
 de acordo com alguns critérios. Entretanto, o código está incompleto e possui
