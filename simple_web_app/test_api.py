@@ -49,3 +49,66 @@ def test_password_validation_8_chars_good_password_should_return_status_201():
     # then
     print(response.content)
     assert response.status_code == 201
+
+def test_password_validation_7_chars_password_should_return_status_400():
+    # given
+    sus_password_dict = {"content": "aB1@cD2"}
+    # when
+    response = client.post("/", json=sus_password_dict)
+    # then
+    print(response.content)
+    assert response.status_code == 400
+
+def test_password_validation_9_chars_good_password_should_return_status_201():
+    # given
+    good_password_dict = {"content": "aB1@cD2#a"}
+    # when
+    response = client.post("/", json=good_password_dict)
+    # then
+    print(response.content)
+    assert response.status_code == 201
+
+def test_password_validation__8_chars_with_no_digit_password_should_return_status_400():
+    # given
+    sus_password_dict = {"content": "C@Abc@A"}
+    # when
+    response = client.post("/", json=sus_password_dict)
+    # then
+    print(response.content)
+    assert response.status_code == 400
+
+def test_8_chars_with_no_lower_case_password_should_return_status_400():
+    # given
+    sus_password_dict = {"content": "C@ABc@A"}
+    # when
+    response = client.post("/", json=sus_password_dict)
+    # then
+    print(response.content)
+    assert response.status_code == 400
+
+def test_8_chars_with_no_especial_character_password_should_return_status_400():
+    # given
+    sus_password_dict = {"content": "1eAB1eAB"}
+    # when
+    response = client.post("/", json=sus_password_dict)
+    # then
+    print(response.content)
+    assert response.status_code == 400
+
+def test_8_chars_with_no_upper_case_password_should_return_status_400():
+    # given
+    sus_password_dict = {"content": "c@abc@a1"}
+    # when
+    response = client.post("/", json=sus_password_dict)
+    # then
+    print(response.content)
+    assert response.status_code == 400
+
+def test_8_chars_with_invalid_char_password_should_return_status_400():
+    # given
+    sus_password_dict = {"content": "aB1acD2b~"}
+    # when
+    response = client.post("/", json=sus_password_dict)
+    # then
+    print(response.content)
+    assert response.status_code == 400
